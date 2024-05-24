@@ -1,60 +1,22 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+import Image from 'next/image';
+import styles from '@/styles/login.module.css';
 
 const Login = () => {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const router = useRouter();
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // Aqui você pode adicionar a lógica de autenticação, por exemplo, chamando uma API
-    // Vamos simular uma autenticação simples:
-    if (email === 'user@example.com' && password === 'password') {
-      router.push('/');
-    } else {
-      setError('Credenciais inválidas');
-    }
-  };
-
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form 
-        onSubmit={handleSubmit} 
-        style={{ border: '1px solid #ccc', borderRadius: '8px' }}
-        className="w-[300px] p-[2em]"
-      >
-        <h2>
-          Login
-        </h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <div style={{ marginBottom: '1em' }}>
-          <label>Email</label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={{ width: '100%', padding: '0.5em', marginBottom: '0.5em' }}
-            required
-          />
-        </div>
-        <div style={{ marginBottom: '1em' }}>
-          <label>Senha</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: '100%', padding: '0.5em', marginBottom: '0.5em' }}
-            required
-          />
-        </div>
-        <button type="submit" style={{ width: '100%', padding: '0.5em', backgroundColor: '#24A78A', color: '#fff', border: 'none', borderRadius: '4px' }}>
-          Login
-        </button>
-      </form>
+    <div className={`w-screen h-screen bg-red-600 flex justify-center items-center`}>
+      <div className={`w-[50vw] h-full overflow-hidden ${styles.imgContainer}`}>
+        <Image 
+          src="/login/bg-login.jpg"
+          alt="Imagem de fundo"
+          width={4000}
+          height={6000}
+          priority 
+        />
+      </div>
+      <div className={`w-[50vw] h-full bg-blue-500`}>
+        meu formmeu formmeu formmeu formmeu form
+      </div>
     </div>
   );
 };

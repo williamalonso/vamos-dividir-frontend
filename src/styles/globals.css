@@ -8,8 +8,17 @@
   --color-accent: #24A78A;  /* #24A78A */
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--color-white);
   background-color: var(--color-dark-gray);
 }
-
