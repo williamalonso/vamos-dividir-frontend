@@ -24,8 +24,12 @@ const Login = () => {
     <div className="flex justify-center items-center h-screen">
       <form 
         onSubmit={handleSubmit} 
-        style={{ width: '300px', padding: '2em', border: '1px solid #ccc', borderRadius: '8px' }}>
-        <h2>Login</h2>
+        style={{ border: '1px solid #ccc', borderRadius: '8px' }}
+        className="w-[300px] p-[2em]"
+      >
+        <h2>
+          Login
+        </h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <div style={{ marginBottom: '1em' }}>
           <label>Email</label>
