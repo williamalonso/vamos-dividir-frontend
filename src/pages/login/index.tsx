@@ -51,7 +51,7 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit" style={{ width: '100%', padding: '0.5em', backgroundColor: '#0070f3', color: '#fff', border: 'none', borderRadius: '4px' }}>
+        <button type="submit" style={{ width: '100%', padding: '0.5em', backgroundColor: '#24A78A', color: '#fff', border: 'none', borderRadius: '4px' }}>
           Login
         </button>
       </form>
