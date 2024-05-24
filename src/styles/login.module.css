@@ -1,0 +1,10 @@
+.imgContainer {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+}
+
+.imgContainer img {
+  height: auto;
+  object-fit: contain;
+}
