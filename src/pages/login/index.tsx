@@ -23,7 +23,7 @@ const Login = () => {
         <Image 
           className='h-auto object-contain'
           src="/login/bg-login.jpg"
-          alt="Imagem de fundo"
+          alt="Imagem de duas mãos em cima de um notebook aberto sobre uma mesa com um celular e uma xícara de café ao lado"
           width={4000}
           height={6000}
           priority 
