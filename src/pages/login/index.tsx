@@ -21,12 +21,12 @@ const Login = () => {
     <div className={`w-screen h-screen flex justify-center items-center`}>
       <div className={`w-[50vw] h-full overflow-hidden flex items-center justify-center`}>
         <Image 
-          className='h-auto object-contain'
+          className="h-auto object-contain w-full"
           src="/login/bg-login.jpg"
           alt="Imagem de duas mãos em cima de um notebook aberto sobre uma mesa com um celular e uma xícara de café ao lado"
-          width={4000}
-          height={6000}
-          priority 
+          width={400}
+          height={600}
+          priority
         />
       </div>
       <div className={`w-[50vw] h-full flex items-center justify-center`}>
