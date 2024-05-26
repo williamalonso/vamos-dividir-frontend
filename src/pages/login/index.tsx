@@ -33,7 +33,7 @@ const Login = () => {
         <div className="text-center w-full max-w-[382px]">
           <h2 className="text-3xl font-bold mb-4 text-left">Acesse sua conta</h2>
           <div className="mb-4 w-full text-left">
-            <label htmlFor="email" className="block mb-1">Email</label>
+            <label htmlFor="filled-adornment-email" className="block mb-1">Email</label>
             <FormControl sx={{ width: '100%', height: '50px' }} variant="filled">
               <FilledInput
                 id="filled-adornment-email"
@@ -68,7 +68,7 @@ const Login = () => {
             </FormControl>
           </div>
           <div className="mb-4 w-full text-left">
-            <label htmlFor="password" className="block mb-1">Senha</label>
+            <label htmlFor="filled-adornment-password" className="block mb-1">Senha</label>
             <FormControl sx={{ width: '100%', height: '50px' }} variant="filled">
               <FilledInput
                 id="filled-adornment-password"
