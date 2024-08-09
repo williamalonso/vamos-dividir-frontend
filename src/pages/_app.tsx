@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
+import LayoutComponent from '@/components/Layout/LayoutComponent';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -9,7 +10,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <title>Vamos Dividir</title>
         <meta name="description" content="Aplicativo web criado para organizar despesas financeiras" />
       </Head>
-      <Component {...pageProps} />
+      <LayoutComponent>
+        <Component {...pageProps} />
+      </LayoutComponent>
     </>
   );
 };
