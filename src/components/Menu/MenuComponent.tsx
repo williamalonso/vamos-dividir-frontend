@@ -14,8 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useEffect, useState } from 'react';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Dashboard', 'Toggle Theme', 'Logout'];
+const pages = ['Produtos', 'Preços', 'Blog'];
+const settings = ['Perfil', 'Dashboard', 'Toggle Theme', 'Sair'];
 
 const MenuComponent = () => {
 
@@ -183,9 +183,9 @@ const MenuComponent = () => {
                     <Typography textAlign="center">
                       { setting === 'Toggle Theme' ? (
                           theme === 'light' ? (
-                            <>Dark Mode</>
+                            <>Tema escuro</>
                           ) : (
-                            <>Light Mode</>
+                            <>Tema claro</>
                           )
                         ) : (
                           setting
