@@ -7,6 +7,9 @@ const Page = () => {
       <Link href="/login">
         Ir para Login
       </Link>
+      <Link href="/home">
+        Ir para Home
+      </Link>
     </div>
   );
 }
