@@ -13,6 +13,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useEffect, useState } from 'react';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const pages = ['Produtos', 'Preços', 'Blog'];
 const settings = ['Perfil', 'Dashboard', 'Toggle Theme', 'Sair'];
@@ -183,10 +188,25 @@ const MenuComponent = () => {
                     <Typography textAlign="center">
                       { setting === 'Toggle Theme' ? (
                           theme === 'light' ? (
-                            <>Tema escuro</>
+                            <><Brightness4Icon sx={{ mr: 1, color: '#24A78A' }} />Tema escuro</>
                           ) : (
-                            <>Tema claro</>
+                            <><Brightness7Icon sx={{ mr: 1, color: '#24A78A' }} />Tema claro</>
                           )
+                        ) : setting === 'Sair' ? (
+                          <>
+                            <LogoutIcon sx={{ mr: 1, color: '#24A78A' }} />
+                            Logout
+                          </>
+                        ) : setting === 'Perfil' ? (
+                          <>
+                            <AccountCircleIcon sx={{ mr: 1, color: '#24A78A' }} />
+                            Perfil
+                          </>
+                        ) : setting === 'Dashboard' ? (
+                          <>
+                            <DashboardIcon sx={{ mr: 1, color: '#24A78A' }} />
+                            Dashboard
+                          </>
                         ) : (
                           setting
                         )
