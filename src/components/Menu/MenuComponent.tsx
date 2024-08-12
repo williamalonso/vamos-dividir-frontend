@@ -19,8 +19,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
-const pages = ['Produtos', 'Preços', 'Blog'];
-const settings = ['Perfil', 'Dashboard', 'Toggle Theme', 'Sair'];
+const pages = ['Inicio', 'Apoie'];
+const settings = ['Perfil', 'Toggle Theme', 'Sair'];
 
 const MenuComponent = () => {
 
@@ -201,11 +201,6 @@ const MenuComponent = () => {
                           <>
                             <AccountCircleIcon sx={{ mr: 1, color: '#24A78A' }} />
                             Perfil
-                          </>
-                        ) : setting === 'Dashboard' ? (
-                          <>
-                            <DashboardIcon sx={{ mr: 1, color: '#24A78A' }} />
-                            Dashboard
                           </>
                         ) : (
                           setting
