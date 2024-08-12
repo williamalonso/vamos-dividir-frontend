@@ -3,19 +3,14 @@
 @import 'tailwindcss/utilities';
 
 :root {
-  --color-dark-gray: rgb(38, 38, 38); /* Tom de preto não muito forte */
-  --color-white: rgb(255, 255, 255);  /* Branco */
-  --color-accent: #24A78A;  /* #24A78A */
+  --color-accent: #24A78A;
+  --background-color: rgb(241 244 239);
+  --text-color: rgb(38, 38, 38);
 }
 
-.light-theme {
-  --background-color: var(--color-white);
-  --text-color: var(--color-dark-gray);
-}
-
-.dark-theme {
-  --background-color: var(--color-dark-gray);
-  --text-color: var(--color-white);
+.dark {
+  --background-color: rgb(38, 38, 38);
+  --text-color: rgb(255, 255, 255);
 }
 
 * {

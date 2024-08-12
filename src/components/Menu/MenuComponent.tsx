@@ -31,7 +31,7 @@ const MenuComponent = () => {
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme as 'light' | 'dark');
-    document.documentElement.className = savedTheme === 'light' ? 'light-theme' : 'dark-theme';
+    document.documentElement.className = savedTheme === 'light' ? 'light' : 'dark';
   }, []);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -53,7 +53,7 @@ const MenuComponent = () => {
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    document.documentElement.className = newTheme === 'light' ? 'light-theme' : 'dark-theme';
+    document.documentElement.className = newTheme === 'light' ? 'light' : 'dark';
     localStorage.setItem('theme', newTheme);
     handleCloseUserMenu();
   };

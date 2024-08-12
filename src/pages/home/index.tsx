@@ -4,7 +4,9 @@ const Home = () => {
 
   return (
     <div className="container mx-auto">
-      <DatalistComponent />
+      <div className="mt-[50px]">
+        <DatalistComponent />
+      </div>
     </div>
   );
 }
