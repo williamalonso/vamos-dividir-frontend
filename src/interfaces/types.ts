@@ -1,10 +1,9 @@
 export interface Data {
   id: number;
-  calories: number;
-  carbs: number;
-  fat: number;
+  quantity: number;
+  createdDate: string;
+  total: string;
   name: string;
-  protein: number;
 }
 
 export interface HeadCell {
@@ -17,10 +16,9 @@ export interface HeadCell {
 export function createData(
   id: number,
   name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
+  quantity: number,
+  total: string,
+  createdDate: string,
 ): Data {
-  return { id, name, calories, fat, carbs, protein };
+  return { id, name, quantity, total, createdDate };
 }

@@ -22,35 +22,30 @@ const headCells: readonly HeadCell[] = [
     id: 'name',
     numeric: false,
     disablePadding: true,
-    label: 'Dessert (100g serving)',
+    label: 'Nome:',
   },
   {
-    id: 'calories',
+    id: 'quantity',
     numeric: true,
     disablePadding: false,
-    label: 'Calories',
+    label: 'Qtd Pessoas:',
   },
   {
-    id: 'fat',
+    id: 'total',
     numeric: true,
     disablePadding: false,
-    label: 'Fat (g)',
+    label: 'Total:',
   },
   {
-    id: 'carbs',
+    id: 'createdDate',
     numeric: true,
     disablePadding: false,
-    label: 'Carbs (g)',
-  },
-  {
-    id: 'protein',
-    numeric: true,
-    disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Criado em:',
   },
 ];
 
 const EnhancedTableHead: React.FC<EnhancedTableHeadProps> = (props) => {
+
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
 
   const createSortHandler = (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
@@ -75,6 +70,7 @@ const EnhancedTableHead: React.FC<EnhancedTableHeadProps> = (props) => {
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={headCell.id === 'name' ? { minWidth: '150px' } : undefined} // Definindo largura mínima para o 'Nome'
           >
             <TableSortLabel
               active={orderBy === headCell.id}
