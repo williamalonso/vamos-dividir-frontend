@@ -17,7 +17,6 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const pages = ['Inicio', 'Apoie'];
 const settings = ['Perfil', 'Toggle Theme', 'Sair'];
@@ -88,7 +87,7 @@ const MenuComponent = () => {
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              Vamos Dividir
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -144,7 +143,7 @@ const MenuComponent = () => {
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              Vamos Dividir
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
