@@ -10,6 +10,7 @@ const TableBody: React.FC<TableProps> = ({ columns, data }) => {
               <th key={index} className="border border-gray-300 px-4 py-2">
                 <span className="cursor-pointer">
                   { column }
+                  <span className="ml-2">&#9650;</span>
                 </span>
               </th>
             ))}
