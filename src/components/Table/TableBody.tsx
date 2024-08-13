@@ -2,7 +2,7 @@ import { TableProps } from "@/interfaces/TableData";
 
 const TableBody: React.FC<TableProps> = ({ columns, data }) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto shadow-lg shadow-black-500/50 bg-white dark:bg-[#3c3c3c]">
       <table className="min-w-full border-collapse border border-gray-200">
         <thead>
           <tr>
