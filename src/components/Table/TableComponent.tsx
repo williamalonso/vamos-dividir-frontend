@@ -4,7 +4,7 @@ import { useState } from "react";
 const TableComponent = () => {
 
   const [sortDirection, setSortDirection] = useState('asc');
-  const [sortColumn, setSortColumns] = useState('Nome');
+  const [sortColumn, setSortColumn] = useState('Nome');
 
   const columns = ['Nome', 'Valor total', 'Criado em'];
   const data = [
@@ -13,12 +13,17 @@ const TableComponent = () => {
     { name: 'Churrasco Amigos', valorTotal: 'R$350,90', data: '15/09/2024' },
   ];
 
+  const onSort = (column: any) => {
+    console.log(`clicou em ${column}`);
+  }
+
   return (
     <div className="container mx-auto p-8">
       <h1 className="text-2xl font-bold mb-4">Minha Tabela</h1>
       <TableBody 
         columns={columns}
         data={data}
+        onSort={onSort}
         sortDirection={sortDirection}
         sortColumn={sortColumn}
       />
