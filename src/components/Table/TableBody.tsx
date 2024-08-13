@@ -11,7 +11,9 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
                 <span className="cursor-pointer">
                   { column }
                   { sortColumn === column && (
-                    <span className="ml-2">&#9650;</span>
+                    <span className="ml-2">
+                      { sortDirection === 'asc' ? '▲' : '▼' }
+                    </span>
                   )}
                 </span>
               </th>
