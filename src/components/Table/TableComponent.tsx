@@ -14,6 +14,8 @@ const TableComponent = () => {
   ];
 
   const onSort = (column: any) => {
+    const newDirection = (sortColumn === column && sortDirection === 'asc') ? 'desc' : 'asc';
+    setSortDirection(newDirection);
     setSortColumn(column);
     console.log(`clicou em ${column}`);
   }
