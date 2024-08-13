@@ -14,6 +14,7 @@ const TableComponent = () => {
   ];
 
   const onSort = (column: any) => {
+    setSortColumn(column);
     console.log(`clicou em ${column}`);
   }
 
