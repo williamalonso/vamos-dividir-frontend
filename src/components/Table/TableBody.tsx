@@ -8,7 +8,9 @@ const TableBody: React.FC<TableProps> = ({ columns, data }) => {
           <tr>
             { columns.map( (column, index) => (
               <th key={index} className="border border-gray-300 px-4 py-2">
-                { column }
+                <span className="cursor-pointer">
+                  { column }
+                </span>
               </th>
             ))}
           </tr>
