@@ -1,11 +1,11 @@
-import DatalistComponent from "@/components/Datalist/DatalistComponent";
+import TableComponent from "@/components/Table/TableComponent";
 
 const Home = () => {
 
   return (
     <div className="container mx-auto">
       <div className="mt-[50px]">
-        <DatalistComponent />
+        <TableComponent />
       </div>
     </div>
   );
