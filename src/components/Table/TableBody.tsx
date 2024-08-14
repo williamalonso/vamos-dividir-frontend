@@ -1,4 +1,6 @@
 import { TableProps } from "@/interfaces/TableData";
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
 
 const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortColumn, onSort }) => {
   return (
@@ -12,7 +14,7 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
                   { column }
                   { sortColumn === column && (
                     <span className="ml-2">
-                      { sortDirection === 'asc' ? '▲' : '▼' }
+                      { sortDirection === 'asc' ? <NorthIcon /> : <SouthIcon /> }
                     </span>
                   )}
                 </span>
