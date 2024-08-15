@@ -11,5 +11,5 @@ export interface TableProps {
   data: TableData[];
   sortDirection: string;
   sortColumn: string;
-  onSort: any;
+  onSort: (column: string) => void;
 }

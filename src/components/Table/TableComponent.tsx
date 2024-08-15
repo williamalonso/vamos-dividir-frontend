@@ -13,7 +13,7 @@ const TableComponent = () => {
     { name: 'Churrasco Amigos', valorTotal: 'R$350,90', data: '15/09/2024' },
   ];
 
-  const onSort = (column: any) => {
+  const onSort = (column: string) => {
     const newDirection = (sortColumn === column && sortDirection === 'asc') ? 'desc' : 'asc';
     setSortDirection(newDirection);
     setSortColumn(column);
