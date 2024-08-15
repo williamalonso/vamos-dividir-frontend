@@ -9,7 +9,7 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
         <thead>
           <tr>
             { columns.map( (column, index) => (
-              <th key={index} className="border border-gray-300 px-4 py-2">
+              <th key={index} className={`border border-gray-300 px-4 py-2 ${column === 'Nome' ? 'w-1/2': 'w-1/4'}`}>
                 <span className="cursor-pointer" onClick={ () => onSort(column) }>
                   { column }
                   { sortColumn === column && (
