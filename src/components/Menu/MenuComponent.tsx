@@ -121,9 +121,11 @@ const MenuComponent = () => {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
+                  <Link key={page} href={page === "Inicio" ? '/home' : '/' } passHref>
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  </Link>
                 ))}
               </Menu>
             </Box>
@@ -148,7 +150,7 @@ const MenuComponent = () => {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
-                <Link href={page === "Inicio" ? '/home' : '/' }>
+                <Link key={page} href={page === "Inicio" ? '/home' : '/' } passHref>
                   <Button
                     key={page}
                     onClick={handleCloseNavMenu}

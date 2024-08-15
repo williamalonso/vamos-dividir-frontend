@@ -10,7 +10,16 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
         <thead>
           <tr>
             { columns.map( (column, index) => (
-              <th key={index} className={`border border-gray-300 px-4 py-2 ${ column === 'Nome' ? 'w-1/2': 'w-1/4'}`}>
+              <th 
+                key={index}
+                className={`
+                  border 
+                  border-gray-300
+                  px-4
+                  py-2
+                  ${ column === 'Nome' ? 'w-1/2': 'w-1/4 hidden md:table-cell'}
+                `}
+              >
                 <span className="cursor-pointer" onClick={ () => onSort(column) }>
                   { column }
                   { sortColumn === column && (
@@ -31,10 +40,10 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
                   { item.name }
                 </Link>
               </td>
-              <td className="border border-gray-300 px-4 py-2">
+              <td className="border border-gray-300 px-4 py-2 hidden md:table-cell">
                 { item.valorTotal }
               </td>
-              <td className="border border-gray-300 px-4 py-2">
+              <td className="border border-gray-300 px-4 py-2 hidden md:table-cell">
                 { item.data }
               </td>
             </tr>
