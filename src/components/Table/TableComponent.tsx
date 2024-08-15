@@ -8,9 +8,9 @@ const TableComponent = () => {
 
   const columns = ['Nome', 'Valor total', 'Criado em'];
   const data = [
-    { name: 'Aniversário Manu', valorTotal: 'R$152,45', data: '12/08/2024' },
-    { name: 'Confraternização Empresa', valorTotal: 'R$750,00', data: '25/12/2024' },
-    { name: 'Churrasco Amigos', valorTotal: 'R$350,90', data: '15/09/2024' },
+    { id: 1, name: 'Aniversário Manu', valorTotal: 'R$152,45', data: '12/08/2024' },
+    { id: 2, name: 'Confraternização Empresa', valorTotal: 'R$750,00', data: '25/12/2024' },
+    { id: 3, name: 'Churrasco Amigos', valorTotal: 'R$350,90', data: '15/09/2024' },
   ];
 
   const onSort = (column: string) => {
@@ -45,7 +45,7 @@ const TableComponent = () => {
   
     if (columnA < columnB) return sortDirection === 'asc' ? -1 : 1;
     if (columnA > columnB) return sortDirection === 'asc' ? 1 : -1;
-    
+
     return 0;
 
   });

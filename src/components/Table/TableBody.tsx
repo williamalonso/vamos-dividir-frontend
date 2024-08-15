@@ -1,6 +1,7 @@
 import { TableProps } from "@/interfaces/TableData";
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
+import Link from "next/link";
 
 const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortColumn, onSort }) => {
   return (
@@ -9,7 +10,7 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
         <thead>
           <tr>
             { columns.map( (column, index) => (
-              <th key={index} className={`border border-gray-300 px-4 py-2 ${column === 'Nome' ? 'w-1/2': 'w-1/4'}`}>
+              <th key={index} className={`border border-gray-300 px-4 py-2 ${ column === 'Nome' ? 'w-1/2': 'w-1/4'}`}>
                 <span className="cursor-pointer" onClick={ () => onSort(column) }>
                   { column }
                   { sortColumn === column && (
@@ -25,8 +26,10 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
         <tbody>
           { data.map( (item, index) => (
             <tr key={index}>
-              <td className="border border-gray-300 px-4 py-2">
-                { item.name }
+              <td className="border border-gray-300 px-4 py-2 cursor-pointer">
+                <Link href={`/detalhes/${item.id}`}>
+                  { item.name }
+                </Link>
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 { item.valorTotal }

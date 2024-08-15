@@ -1,6 +1,7 @@
 // interfaces/TableData.ts
 
 export interface TableData {
+  id: number;
   name: string;
   valorTotal: string;
   data: string;
