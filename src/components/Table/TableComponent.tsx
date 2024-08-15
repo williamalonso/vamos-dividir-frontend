@@ -20,12 +20,42 @@ const TableComponent = () => {
     // console.log(`clicou em ${column}`);
   }
 
+  const sortedData = [...data].sort((a, b) => {
+    
+    let columnA, columnB;
+  
+    switch (sortColumn) {
+      case 'Nome':
+        columnA = a.name.toLowerCase();
+        columnB = b.name.toLowerCase();
+        break;
+      case 'Valor total':
+        columnA = parseFloat(a.valorTotal.replace('R$', '').replace(',', '.'));
+        columnB = parseFloat(b.valorTotal.replace('R$', '').replace(',', '.'));
+        break;
+      case 'Criado em':
+        const [dayA, monthA, yearA] = a.data.split('/').map(Number);
+        const [dayB, monthB, yearB] = b.data.split('/').map(Number);
+        columnA = new Date(yearA, monthA - 1, dayA);
+        columnB = new Date(yearB, monthB - 1, dayB);
+        break;
+      default:
+        return 0;
+    }
+  
+    if (columnA < columnB) return sortDirection === 'asc' ? -1 : 1;
+    if (columnA > columnB) return sortDirection === 'asc' ? 1 : -1;
+    
+    return 0;
+
+  });
+  
   return (
     <div className="container mx-auto p-8">
       <h1 className="text-2xl font-bold mb-4">Minha Tabela</h1>
       <TableBody 
         columns={columns}
-        data={data}
+        data={sortedData}
         onSort={onSort}
         sortDirection={sortDirection}
         sortColumn={sortColumn}
