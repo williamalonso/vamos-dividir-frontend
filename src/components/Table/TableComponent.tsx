@@ -1,4 +1,5 @@
 import TableBody from "@/components/Table/TableBody";
+import Link from "next/link";
 import { useState } from "react";
 
 const TableComponent = () => {
@@ -51,7 +52,7 @@ const TableComponent = () => {
   
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-2xl font-bold mb-4">Minha Tabela</h1>
+      <h1 className="text-2xl font-bold mb-4">Minhas Demandas</h1>
       <TableBody 
         columns={columns}
         data={sortedData}
@@ -59,6 +60,11 @@ const TableComponent = () => {
         sortDirection={sortDirection}
         sortColumn={sortColumn}
       />
+      <div className="mt-4 bg-[#24A78A] text-white px-4 py-2 rounded hover:bg-[#1E8A74] w-[200px] flex justify-center items-center cursor-pointer">
+        <Link href="/criar-demanda">
+          Criar Nova Demanda
+        </Link>
+      </div>
     </div>
   );
 }
