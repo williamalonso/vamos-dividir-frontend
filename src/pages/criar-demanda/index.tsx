@@ -1,6 +1,6 @@
 // pages/criar-demanda/index.tsx
 
-import { createDemand } from '@/api/demandService';
+import { createDemand } from '@/pages/api/demandService';
 import React, { useState } from 'react';
 
 const CriarDemanda: React.FC = () => {
