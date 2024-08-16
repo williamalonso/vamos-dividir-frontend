@@ -1,28 +1,28 @@
 // pages/criar-demanda/index.tsx
 
-import { createDemand } from '@/pages/api/demandService';
+import { createDemand } from '@/pages/api/createDemand/demandService';
 import React, { useState } from 'react';
 
 const CriarDemanda: React.FC = () => {
 
   const [title, setTitle] = useState('');
-  const [participants, setParticipants] = useState<string[]>([""]);
+  const [peopleNames, setpeopleNames] = useState<string[]>([""]);
   const [loading, setLoading] = useState(false);
 
   const handleAddParticipant = () => {
-    setParticipants([...participants, ""]);
+    setpeopleNames([...peopleNames, ""]);
   };
 
   const handleRemoveParticipant = () => {
-    if (participants.length > 1) {
-      setParticipants(participants.slice(0, -1));
+    if (peopleNames.length > 1) {
+      setpeopleNames(peopleNames.slice(0, -1));
     }
   };
 
   const handleParticipantChange = (index: number, value: string) => {
-    const newParticipants = [...participants];
-    newParticipants[index] = value;
-    setParticipants(newParticipants);
+    const newpeopleNames = [...peopleNames];
+    newpeopleNames[index] = value;
+    setpeopleNames(newpeopleNames);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,7 +32,7 @@ const CriarDemanda: React.FC = () => {
     try {
       await createDemand({
         title,
-        participants,
+        peopleNames,
       });
       // Handle success, e.g., redirect or show a success message
     } catch (error) {
@@ -62,7 +62,7 @@ const CriarDemanda: React.FC = () => {
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
             Participantes
           </label>
-          {participants.map((participant, index) => (
+          {peopleNames.map((participant, index) => (
             <div key={index} className="flex items-center mb-2">
               <input
                 type="text"
@@ -71,7 +71,7 @@ const CriarDemanda: React.FC = () => {
                 className="mt-1 block w-1/2 border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-[#24A78A] focus:border-[#24A78A] dark:bg-[#3c3c3c] dark:text-white"
                 placeholder={`Participante ${index + 1}`}
               />
-              {index === participants.length - 1 && (
+              {index === peopleNames.length - 1 && (
                 <>
                   <button
                     type="button"
@@ -80,7 +80,7 @@ const CriarDemanda: React.FC = () => {
                   >
                     Adicionar mais participantes
                   </button>
-                  {participants.length > 1 && (
+                  {peopleNames.length > 1 && (
                     <button
                       type="button"
                       onClick={handleRemoveParticipant}
