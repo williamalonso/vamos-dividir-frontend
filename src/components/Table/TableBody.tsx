@@ -3,7 +3,7 @@ import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import Link from "next/link";
 
-const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortColumn, onSort }) => {
+const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortColumn, onSort, loading }) => {
   return (
     <div className="overflow-x-auto shadow-lg shadow-black-500/50 bg-white dark:bg-[#3c3c3c]">
       <table className="min-w-full border-collapse border border-gray-200">

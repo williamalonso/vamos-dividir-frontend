@@ -13,4 +13,5 @@ export interface TableProps {
   sortDirection: string;
   sortColumn: string;
   onSort: (column: string) => void;
+  loading: boolean;
 }

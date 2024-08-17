@@ -1,18 +1,43 @@
-import TableBody from "@/components/Table/TableBody";
+import axios from "axios";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TableBody from "@/components/Table/TableBody";
+
+interface Demand {
+  id: number;
+  name: string;
+  valorTotal: string;
+  data: string;
+}
 
 const TableComponent = () => {
 
   const [sortDirection, setSortDirection] = useState('asc');
   const [sortColumn, setSortColumn] = useState('Nome');
+  const [data, setData] = useState<Demand[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const columns = ['Nome', 'Valor total', 'Criado em'];
-  const data = [
-    { id: 1, name: 'Aniversário Manu', valorTotal: 'R$152,45', data: '12/08/2024' },
-    { id: 2, name: 'Confraternização Empresa', valorTotal: 'R$750,00', data: '25/12/2024' },
-    { id: 3, name: 'Churrasco Amigos', valorTotal: 'R$350,90', data: '15/09/2024' },
-  ];
+  // const data = [
+  //   { id: 1, name: 'Aniversário Manu', valorTotal: 'R$152,45', data: '12/08/2024' },
+  //   { id: 2, name: 'Confraternização Empresa', valorTotal: 'R$750,00', data: '25/12/2024' },
+  //   { id: 3, name: 'Churrasco Amigos', valorTotal: 'R$350,90', data: '15/09/2024' },
+  // ];
+
+  useEffect( () => {
+    const fetchData = async() => {
+      try {
+        setLoading(true);
+        const response = await axios.get('/api/tableDemand/tableService');
+        setData(response.data);
+      } catch(e) {
+        console.error('Erro ao buscar dados no componente de tabela: ', e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []); // O array vazio indica que o efeito é executado apenas uma vez após a montagem do componente
 
   const onSort = (column: string) => {
     const newDirection = (sortColumn === column && sortDirection === 'asc') ? 'desc' : 'asc';
@@ -59,6 +84,7 @@ const TableComponent = () => {
         onSort={onSort}
         sortDirection={sortDirection}
         sortColumn={sortColumn}
+        loading={loading}
       />
       <div className="mt-4 bg-[#24A78A] text-white px-4 py-2 rounded hover:bg-[#1E8A74] w-[200px] flex justify-center items-center cursor-pointer">
         <Link href="/criar-demanda">
