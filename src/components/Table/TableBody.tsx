@@ -1,7 +1,8 @@
-import { TableProps } from "@/interfaces/TableData";
+import Link from "next/link";
+import Skeleton from '@mui/material/Skeleton';
 import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
-import Link from "next/link";
+import { TableProps } from "@/interfaces/TableData";
 
 const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortColumn, onSort, loading }) => {
   return (
@@ -33,21 +34,33 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
           </tr>
         </thead>
         <tbody>
-          { data.map( (item, index) => (
-            <tr key={index}>
-              <td className="border border-gray-300 px-4 py-2 cursor-pointer">
-                <Link href={`/detalhes/${item.id}`}>
-                  { item.name }
-                </Link>
-              </td>
-              <td className="border border-gray-300 px-4 py-2 hidden md:table-cell">
-                { item.valorTotal }
-              </td>
-              <td className="border border-gray-300 px-4 py-2 hidden md:table-cell">
-                { item.data }
-              </td>
-            </tr>
-          ))}
+          { loading ? (
+            Array.from({ length: 5 }).map((_, index) => (
+              <tr key={index}>
+                {columns.map((_, colIndex) => (
+                  <td key={colIndex} className="border border-gray-300 px-4 py-2 hidden md:table-cell">
+                    <Skeleton variant="text" width="100%" height={40} />
+                  </td>
+                ))}
+              </tr>
+            ))
+          ) : (
+            data.map( (item, index) => (
+              <tr key={index}>
+                <td className="border border-gray-300 px-4 py-2 cursor-pointer">
+                  <Link href={`/detalhes/${item.id}`}>
+                    { item.name }
+                  </Link>
+                </td>
+                <td className="border border-gray-300 px-4 py-2 hidden md:table-cell">
+                  { item.valorTotal }
+                </td>
+                <td className="border border-gray-300 px-4 py-2 hidden md:table-cell">
+                  { item.data }
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
