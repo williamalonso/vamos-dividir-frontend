@@ -8,12 +8,14 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import axios from 'axios';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -22,12 +24,16 @@ const Login = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    alert('clicou');
 
     try {
       const response = await axios.post('/api/login', {email, password});
-      const { token } = response.data;
-      localStorage.setItem('token', token);
+      // const { token } = response.data;
+      // localStorage.setItem('token', token);
+      if (response.status === 200) {
+        // Redireciona o usuário para a página '/home' após o login bem-sucedido
+        router.push('/home');
+      }
     } catch(e) {
       console.error('Erro ao realizar login: ', e);
     }
@@ -131,7 +137,7 @@ const Login = () => {
             </FormControl>
             <p className="text-xs text-gray-500 mt-1">Possui 8 caracteres ou mais</p>
           </div>
-          <button className="bg-customGreen w-full text-white px-4 py-2 hover:bg-[#1E8A74] transition duration-300 h-[56px] rounded-[64px]">
+          <button type="submit" className="bg-customGreen w-full text-white px-4 py-2 hover:bg-[#1E8A74] transition duration-300 h-[56px] rounded-[64px]">
             Continuar
           </button>
         </form>
