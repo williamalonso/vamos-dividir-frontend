@@ -6,16 +6,32 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import axios from 'axios';
+import { useState } from 'react';
 
 const Login = () => {
 
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('/api/login', {email, password});
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+    } catch(e) {
+      console.error('Erro ao realizar login: ', e);
+    }
+  }
 
   return (
     <div className={`w-screen h-screen flex justify-center items-center`}>
@@ -30,7 +46,7 @@ const Login = () => {
         />
       </div>
       <div className={`w-[50vw] h-full flex items-center justify-center`}>
-        <div className="text-center w-full max-w-[382px]">
+        <form onSubmit={handleSubmit} className="text-center w-full max-w-[382px]">
           <h2 className="text-3xl font-bold mb-4 text-left">Acesse sua conta</h2>
           <div className="mb-4 w-full text-left">
             <label htmlFor="filled-adornment-email" className="block mb-1">Email</label>
@@ -118,7 +134,7 @@ const Login = () => {
           <button className="bg-customGreen w-full text-white px-4 py-2 hover:bg-[#1E8A74] transition duration-300 h-[56px] rounded-[64px]">
             Continuar
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
