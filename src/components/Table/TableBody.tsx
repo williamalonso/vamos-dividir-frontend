@@ -56,7 +56,7 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
                   { item.valorTotal }
                 </td>
                 <td className="border border-gray-300 px-4 py-2 hidden md:table-cell">
-                  { item.data }
+                  { item.date }
                 </td>
               </tr>
             ))

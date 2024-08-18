@@ -2,9 +2,11 @@
 
 export interface TableData {
   id: number;
+  title: string;
   name: string;
   valorTotal: string;
-  data: string;
+  peopleNames: string[];
+  date: string;
 }
 
 export interface TableProps {

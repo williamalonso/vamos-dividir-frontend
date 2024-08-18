@@ -2,19 +2,13 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import TableBody from "@/components/Table/TableBody";
-
-interface Demand {
-  id: number;
-  name: string;
-  valorTotal: string;
-  data: string;
-}
+import { TableData } from "@/interfaces/TableData";
 
 const TableComponent = () => {
 
   const [sortDirection, setSortDirection] = useState('asc');
   const [sortColumn, setSortColumn] = useState('Nome');
-  const [data, setData] = useState<Demand[]>([]);
+  const [data, setData] = useState<TableData[]>([]);
   const [loading, setLoading] = useState(true);
 
   const columns = ['Nome', 'Valor total', 'Criado em'];
@@ -59,8 +53,8 @@ const TableComponent = () => {
         columnB = parseFloat(b.valorTotal.replace('R$', '').replace(',', '.'));
         break;
       case 'Criado em':
-        const [dayA, monthA, yearA] = a.data.split('/').map(Number);
-        const [dayB, monthB, yearB] = b.data.split('/').map(Number);
+        const [dayA, monthA, yearA] = a.date.split('/').map(Number);
+        const [dayB, monthB, yearB] = b.date.split('/').map(Number);
         columnA = new Date(yearA, monthA - 1, dayA);
         columnB = new Date(yearB, monthB - 1, dayB);
         break;
