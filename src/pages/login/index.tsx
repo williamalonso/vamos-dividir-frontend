@@ -115,7 +115,7 @@ const Login = () => {
             </FormControl>
             <p className="text-xs text-gray-500 mt-1">Possui 8 caracteres ou mais</p>
           </div>
-          <button className="bg-customGreen w-full text-white px-4 py-2 hover:bg-blue-600 transition duration-300 h-[56px] rounded-[64px]">
+          <button className="bg-customGreen w-full text-white px-4 py-2 hover:bg-[#1E8A74] transition duration-300 h-[56px] rounded-[64px]">
             Continuar
           </button>
         </div>
