@@ -1,5 +1,10 @@
 // interfaces/TableData.ts
 
+export interface CreateDemandInterface {
+  title: string;
+  peopleNames: string[];
+}
+
 export interface TableData {
   id: number;
   title: string;
