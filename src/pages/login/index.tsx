@@ -24,17 +24,18 @@ const Login = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log('ok');
     e.preventDefault(); // Evita o comportamento padrão do formulário
-    try {
-      const response = await axios.post('/api/login', { email, password });
-      const { token } = response.data;
-      localStorage.setItem('token', token);
-      if (response.status === 200) {
-        router.push('/home');
-      }
-    } catch (e) {
-      console.error('Erro ao realizar login: ', e);
-    }
+    // try {
+    //   const response = await axios.post('/api/login', { email, password });
+    //   const { token } = response.data;
+    //   localStorage.setItem('token', token);
+    //   if (response.status === 200) {
+    //     router.push('/home');
+    //   }
+    // } catch (e) {
+    //   console.error('Erro ao realizar login: ', e);
+    // }
   };
 
   return (
@@ -57,8 +58,9 @@ const Login = () => {
             <FormControl sx={{ width: '100%', height: '50px' }} variant="filled">
               <FilledInput
                 id="filled-adornment-email"
-                type="email"
+                type="text"
                 value={email}
+                autoComplete="username"
                 onChange={(e) => setEmail(e.target.value)}
                 sx={{
                   backgroundColor: 'white',
@@ -97,6 +99,7 @@ const Login = () => {
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
