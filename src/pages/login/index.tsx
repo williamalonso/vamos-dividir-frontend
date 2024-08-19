@@ -24,20 +24,18 @@ const Login = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    alert('clicou');
-
+    e.preventDefault(); // Evita o comportamento padrão do formulário
     try {
-      const response = await axios.post('/api/login', {email, password});
-      // const { token } = response.data;
-      // localStorage.setItem('token', token);
+      const response = await axios.post('/api/login', { email, password });
+      const { token } = response.data;
+      localStorage.setItem('token', token);
       if (response.status === 200) {
-        // Redireciona o usuário para a página '/home' após o login bem-sucedido
         router.push('/home');
       }
-    } catch(e) {
+    } catch (e) {
       console.error('Erro ao realizar login: ', e);
     }
-  }
+  };
 
   return (
     <div className={`w-screen h-screen flex justify-center items-center`}>
@@ -60,6 +58,8 @@ const Login = () => {
               <FilledInput
                 id="filled-adornment-email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 sx={{
                   backgroundColor: 'white',
                   height: '100%',
@@ -95,6 +95,8 @@ const Login = () => {
               <FilledInput
                 id="filled-adornment-password"
                 type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
