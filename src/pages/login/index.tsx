@@ -15,6 +15,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -24,8 +25,17 @@ const Login = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log('ok');
+    
     e.preventDefault(); // Evita o comportamento padrão do formulário
+    // Resetar mensagens de erro
+    setError(null);
+
+    // Verifica se os campos estão preenchidos
+    if (!email || !password) {
+      setError('Por favor, preencha todos os campos.');
+      return;
+    }
+    console.log('ok');
     // try {
     //   const response = await axios.post('/api/login', { email, password });
     //   const { token } = response.data;
@@ -142,6 +152,7 @@ const Login = () => {
             </FormControl>
             <p className="text-xs text-gray-500 mt-1">Possui 8 caracteres ou mais</p>
           </div>
+          { error && <p className="text-red-500 text-sm mb-4">{error}</p> }
           <button type="submit" className="bg-customGreen w-full text-white px-4 py-2 hover:bg-[#1E8A74] transition duration-300 h-[56px] rounded-[64px]">
             Continuar
           </button>
