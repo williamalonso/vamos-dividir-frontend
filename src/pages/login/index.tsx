@@ -52,7 +52,8 @@ const Login = () => {
     <div className={`w-screen h-screen flex justify-center items-center`}>
       <div className={`w-[50vw] h-full overflow-hidden lg:flex items-center justify-center hidden`}>
         <Image 
-          className="h-auto object-contain w-full"
+          // className="h-auto object-contain w-full"
+          layout="responsive"
           src="/login/bg-login.jpg"
           alt="Imagem de duas mãos em cima de um notebook aberto sobre uma mesa com um celular e uma xícara de café ao lado"
           width={400}
@@ -60,7 +61,7 @@ const Login = () => {
           priority
         />
       </div>
-      <div className={`w-full h-full flex items-center justify-center lg:w-[50vw] px-[24px]`}>
+      <div className={`w-full h-full flex items-center justify-center lg:w-[50vw] px-[24px] lg:px-0`}>
         <form onSubmit={handleSubmit} className="text-center w-full max-w-[382px]">
           <h2 className="text-3xl font-bold mb-4 text-left">Acesse sua conta</h2>
           <div className="mb-4 w-full text-left">
