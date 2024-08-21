@@ -50,7 +50,7 @@ const Login = () => {
 
   return (
     <div className={`w-screen h-screen flex justify-center items-center`}>
-      <div className={`w-[50vw] h-full overflow-hidden flex items-center justify-center`}>
+      <div className={`w-[50vw] h-full overflow-hidden lg:flex items-center justify-center hidden`}>
         <Image 
           className="h-auto object-contain w-full"
           src="/login/bg-login.jpg"
@@ -60,7 +60,7 @@ const Login = () => {
           priority
         />
       </div>
-      <div className={`w-[50vw] h-full flex items-center justify-center`}>
+      <div className={`w-full h-full flex items-center justify-center lg:w-[50vw] px-[24px]`}>
         <form onSubmit={handleSubmit} className="text-center w-full max-w-[382px]">
           <h2 className="text-3xl font-bold mb-4 text-left">Acesse sua conta</h2>
           <div className="mb-4 w-full text-left">
@@ -150,7 +150,7 @@ const Login = () => {
                 }}
               />
             </FormControl>
-            <p className="text-xs text-gray-500 mt-1">Possui 8 caracteres ou mais</p>
+            <p className="text-xs text-gray-500 mt-1 font-medium">Possui 8 caracteres ou mais</p>
           </div>
           { error && <p className="text-red-500 text-sm mb-4">{error}</p> }
           <button type="submit" className="bg-customGreen w-full text-white px-4 py-2 hover:bg-[#1E8A74] transition duration-300 h-[56px] rounded-[64px]">
