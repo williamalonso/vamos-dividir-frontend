@@ -35,17 +35,17 @@ const Login = () => {
       setError('Por favor, preencha todos os campos.');
       return;
     }
-    console.log('ok');
-    // try {
-    //   const response = await axios.post('/api/login', { email, password });
-    //   const { token } = response.data;
-    //   localStorage.setItem('token', token);
-    //   if (response.status === 200) {
-    //     router.push('/home');
-    //   }
-    // } catch (e) {
-    //   console.error('Erro ao realizar login: ', e);
-    // }
+    
+    try {
+      const response = await axios.post('/api/login', { email, password });
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      if (response.status === 200) {
+        router.push('/home');
+      }
+    } catch (e) {
+      console.error('Erro ao realizar login: ', e);
+    }
   };
 
   return (
