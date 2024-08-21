@@ -22,7 +22,14 @@ const TableComponent = () => {
     const fetchData = async() => {
       try {
         setLoading(true);
-        const response = await axios.get('/api/tableDemand/tableService');
+        // Buscando o token do localStorage
+        const authToken = localStorage.getItem('token');
+        if (!authToken) {
+          throw new Error('Token de autenticação não encontrado no localStorage');
+        }
+        const response = await axios.post('/api/tableDemand/tableService', {
+          token: authToken
+        });
         setData(response.data);
       } catch(e) {
         console.error('Erro ao buscar dados no componente de tabela: ', e);

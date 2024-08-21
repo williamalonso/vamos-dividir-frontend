@@ -8,10 +8,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Acessando as variáveis de ambiente
     const apiURL = process.env.NEXT_PUBLIC_API_URL;
-    const authToken = process.env.API_AUTH_TOKEN;
+    const authToken = req.body.token;
 
     if(!apiURL) {
       throw new Error('URL da Api não está definida nas variáveis de ambiente');
+    }
+
+    if (!authToken) {
+      return res.status(401).json({ message: 'Token de autenticação não fornecido' });
     }
 
     const endpointURL = `${apiURL}/demand/getall`;
