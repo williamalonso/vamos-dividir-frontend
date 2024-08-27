@@ -6,7 +6,7 @@ export interface CreateDemandInterface {
 }
 
 export interface TableData {
-  id: number;
+  _id: string;
   title: string;
   name: string;
   valorTotal: string;

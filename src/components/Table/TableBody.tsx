@@ -48,7 +48,7 @@ const TableBody: React.FC<TableProps> = ({ columns, data, sortDirection, sortCol
             data.map( (item, index) => (
               <tr key={index}>
                 <td className="border border-gray-300 px-4 py-2 cursor-pointer">
-                  <Link href={`/detalhes/${item.id}`}>
+                  <Link href={`/detalhes/${item._id}`}>
                     { item.name }
                   </Link>
                 </td>
