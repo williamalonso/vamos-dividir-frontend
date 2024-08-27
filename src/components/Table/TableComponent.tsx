@@ -12,31 +12,27 @@ const TableComponent = () => {
   const [loading, setLoading] = useState(true);
 
   const columns = ['Nome', 'Valor total', 'Criado em'];
-  // const data = [
-  //   { id: 1, name: 'Aniversário Manu', valorTotal: 'R$152,45', data: '12/08/2024' },
-  //   { id: 2, name: 'Confraternização Empresa', valorTotal: 'R$750,00', data: '25/12/2024' },
-  //   { id: 3, name: 'Churrasco Amigos', valorTotal: 'R$350,90', data: '15/09/2024' },
-  // ];
+
+  const fetchData = async() => {
+    try {
+      setLoading(true);
+      // Buscando o token do localStorage
+      const authToken = localStorage.getItem('token');
+      if (!authToken) {
+        throw new Error('Token de autenticação não encontrado no localStorage');
+      }
+      const response = await axios.post('/api/tableDemand/tableService', {
+        token: authToken
+      });
+      setData(response.data);
+    } catch(e) {
+      console.error('Erro ao buscar dados no componente de tabela: ', e);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect( () => {
-    const fetchData = async() => {
-      try {
-        setLoading(true);
-        // Buscando o token do localStorage
-        const authToken = localStorage.getItem('token');
-        if (!authToken) {
-          throw new Error('Token de autenticação não encontrado no localStorage');
-        }
-        const response = await axios.post('/api/tableDemand/tableService', {
-          token: authToken
-        });
-        setData(response.data);
-      } catch(e) {
-        console.error('Erro ao buscar dados no componente de tabela: ', e);
-      } finally {
-        setLoading(false);
-      }
-    }
     fetchData();
   }, []); // O array vazio indica que o efeito é executado apenas uma vez após a montagem do componente
 
