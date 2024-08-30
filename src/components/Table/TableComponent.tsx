@@ -12,10 +12,9 @@ const TableComponent = () => {
   const dispatch = useDispatch();
   const [sortDirection, setSortDirection] = useState('asc');
   const [sortColumn, setSortColumn] = useState('Nome');
-  // const [data, setData] = useState<TableData[]>([]);
   const data: TableData[] = useSelector((state: RootState) => state.table.data);
   const [loading, setLoading] = useState(true);
-  console.log(data)
+  
   const columns = ['Nome', 'Valor total', 'Criado em'];
 
   const fetchData = async() => {
