@@ -3,38 +3,48 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import TableBody from "@/components/Table/TableBody";
 import { TableData } from "@/interfaces/TableData";
+import { useDispatch, useSelector } from "react-redux";
+import { setData } from "@/redux/slices/tableSlice";
+import { RootState } from '@/redux/store';
 
 const TableComponent = () => {
 
+  const dispatch = useDispatch();
   const [sortDirection, setSortDirection] = useState('asc');
   const [sortColumn, setSortColumn] = useState('Nome');
-  const [data, setData] = useState<TableData[]>([]);
+  // const [data, setData] = useState<TableData[]>([]);
+  const data: TableData[] = useSelector((state: RootState) => state.table.data);
   const [loading, setLoading] = useState(true);
-
+  console.log(data)
   const columns = ['Nome', 'Valor total', 'Criado em'];
 
   const fetchData = async() => {
-    try {
-      setLoading(true);
-      // Buscando o token do localStorage
-      const authToken = localStorage.getItem('token');
-      if (!authToken) {
-        throw new Error('Token de autenticação não encontrado no localStorage');
+    if( data.length === 0 ) {
+      try {
+        setLoading(true);
+        // Buscando o token do localStorage
+        const authToken = localStorage.getItem('token');
+        if (!authToken) {
+          throw new Error('Token de autenticação não encontrado no localStorage');
+        }
+        const response = await axios.post('/api/tableDemand/tableService', {
+          token: authToken
+        });
+        // setData(response.data);
+        dispatch(setData(response.data)); // Armazena os dados no estado global
+      } catch(e) {
+        console.error('Erro ao buscar dados no componente de tabela: ', e);
+      } finally {
+        setLoading(false);
       }
-      const response = await axios.post('/api/tableDemand/tableService', {
-        token: authToken
-      });
-      setData(response.data);
-    } catch(e) {
-      console.error('Erro ao buscar dados no componente de tabela: ', e);
-    } finally {
+    } else {
       setLoading(false);
     }
   }
 
   useEffect( () => {
     fetchData();
-  }, []); // O array vazio indica que o efeito é executado apenas uma vez após a montagem do componente
+  }, [dispatch]); // O array vazio indica que o efeito é executado apenas uma vez após a montagem do componente
 
   const onSort = (column: string) => {
     const newDirection = (sortColumn === column && sortDirection === 'asc') ? 'desc' : 'asc';
