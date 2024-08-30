@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from "next/link";
 import axios from "axios";
+import BackButtonComponent from "@/components/backBtn/BackButtonComponent";
 
 const Detail = () => {
 
@@ -37,10 +38,7 @@ const Detail = () => {
   
   return(
     <div className="container mx-auto">
-      <Link href="/home">
-        <ArrowBackIcon />
-      </Link>
-      <br></br>
+      <BackButtonComponent />
       Pagina de detalhe
     </div>
   );

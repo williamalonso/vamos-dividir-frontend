@@ -1,7 +1,8 @@
 // pages/criar-demanda/index.tsx
 
-import { createDemand } from '@/pages/api/createDemand/demandService';
 import React, { useState } from 'react';
+import { createDemand } from '@/pages/api/createDemand/demandService';
+import BackButtonComponent from '@/components/backBtn/BackButtonComponent';
 
 const CriarDemanda: React.FC = () => {
 
@@ -44,6 +45,7 @@ const CriarDemanda: React.FC = () => {
   
   return (
     <div className="container mx-auto p-8">
+      <BackButtonComponent />
       <h1 className="text-2xl font-bold mb-4">Criar Grupo</h1>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
