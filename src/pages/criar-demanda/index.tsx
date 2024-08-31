@@ -71,7 +71,7 @@ const CriarDemanda: React.FC = () => {
                 value={participant}
                 onChange={(e) => handleParticipantChange(index, e.target.value)}
                 className="mt-1 block w-1/2 border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-[#24A78A] focus:border-[#24A78A] dark:bg-[#3c3c3c] dark:text-white"
-                placeholder={`Participante ${index + 1}`}
+                placeholder={`Ex: João`}
               />
               {index === peopleNames.length - 1 && (
                 <>
