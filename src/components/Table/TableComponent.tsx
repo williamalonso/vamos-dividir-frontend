@@ -6,6 +6,7 @@ import { TableData } from "@/interfaces/TableData";
 import { useDispatch, useSelector } from "react-redux";
 import { setData } from "@/redux/slices/tableSlice";
 import { RootState } from '@/redux/store';
+import Head from "next/head";
 
 const TableComponent = () => {
 
@@ -43,7 +44,7 @@ const TableComponent = () => {
 
   useEffect( () => {
     fetchData();
-  }, [dispatch]); // O array vazio indica que o efeito é executado apenas uma vez após a montagem do componente
+  }, [dispatch]);
 
   const onSort = (column: string) => {
     const newDirection = (sortColumn === column && sortDirection === 'asc') ? 'desc' : 'asc';
@@ -82,22 +83,28 @@ const TableComponent = () => {
   });
   
   return (
-    <div className="container mx-auto p-8">
-      <h1 className="text-2xl font-bold mb-4">Minhas Demandas</h1>
-      <TableBody 
-        columns={columns}
-        data={sortedData}
-        onSort={onSort}
-        sortDirection={sortDirection}
-        sortColumn={sortColumn}
-        loading={loading}
-      />
-      <div className="mt-4 bg-[#24A78A] text-white px-4 py-2 rounded hover:bg-[#1E8A74] w-[200px] flex justify-center items-center cursor-pointer">
-        <Link href="/criar-demanda">
-          Criar Nova Demanda
-        </Link>
+    <>
+      <Head>
+        <title>Início | Vamos Dividir</title>
+        <meta name="description" content="Página de detalhes" />
+      </Head>
+      <div className="container mx-auto p-8">
+        <h1 className="text-2xl font-bold mb-4">Minhas Demandas</h1>
+        <TableBody 
+          columns={columns}
+          data={sortedData}
+          onSort={onSort}
+          sortDirection={sortDirection}
+          sortColumn={sortColumn}
+          loading={loading}
+        />
+        <div className="mt-4 bg-[#24A78A] text-white px-4 py-2 rounded hover:bg-[#1E8A74] w-[200px] flex justify-center items-center cursor-pointer">
+          <Link href="/criar-demanda">
+            Criar Nova Demanda
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
