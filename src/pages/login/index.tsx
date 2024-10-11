@@ -38,7 +38,7 @@ const Login = () => {
     }
     
     try {
-      const response = await axios.post('/api/login', { email, password });
+      const response = await axios.post('/api/login', { email, password }, { withCredentials: true });
       // console.log(response.data);
       const { accessToken  } = response.data;
       if (response.status === 200 && accessToken) {

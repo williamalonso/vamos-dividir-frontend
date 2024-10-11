@@ -11,10 +11,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
       // Faz a requisição para o endpoint externo
-      const response = await axios.post(`${apiURL}/user/login`, {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${apiURL}/user/login`,
+        { email,password },
+        { withCredentials: true } // Permitir envio de cookies na requisição
+      );
 
       // Retorna a resposta ao frontend
       res.status(200).json(response.data);
