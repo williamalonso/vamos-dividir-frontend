@@ -1,3 +1,5 @@
+//pages->api->login->index.tsx
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 
@@ -14,8 +16,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const response = await axios.post(
         `${apiURL}/user/login`,
         { email,password },
-        { withCredentials: true } // Permitir envio de cookies na requisição
+        { 
+          withCredentials: true, // Permitir envio de cookies na requisição
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        } 
       );
+
+      // Transferir cookies para o cliente
+      const setCookie = response.headers['set-cookie'];
+      
+      if (setCookie) {
+        res.setHeader('Set-Cookie', setCookie); // Armazenar o cookiEncaminha cookies ao cliente
+      }
 
       // Retorna a resposta ao frontend
       res.status(200).json(response.data);
