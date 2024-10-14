@@ -1,12 +1,12 @@
 import axios from "axios";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import TableBody from "@/components/Table/TableBody";
-import { TableData } from "@/interfaces/TableData";
-import { useDispatch, useSelector } from "react-redux";
-import { setData } from "@/redux/slices/tableSlice";
-import { RootState } from '@/redux/store';
 import Head from "next/head";
+import Link from "next/link";
+import { RootState } from '@/redux/store';
+import { useEffect, useState } from "react";
+import { TableData } from "@/interfaces/TableData";
+import { setData } from "@/redux/slices/tableSlice";
+import TableBody from "@/components/Table/TableBody";
+import { useDispatch, useSelector } from "react-redux";
 
 const TableComponent = () => {
 
