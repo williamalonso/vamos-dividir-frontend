@@ -23,12 +23,12 @@ const TableComponent = () => {
       try {
         setLoading(true);
         // Buscando o token do localStorage
-        const authToken = localStorage.getItem('token');
-        if (!authToken) {
+        const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
           throw new Error('Token de autenticação não encontrado no localStorage');
         }
         const response = await axios.post('/api/tableDemand/tableService', {
-          token: authToken
+          token: accessToken
         });
         // setData(response.data);
         dispatch(setData(response.data)); // Armazena os dados no estado global

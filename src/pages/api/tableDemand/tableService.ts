@@ -8,14 +8,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Acessando as variáveis de ambiente
     const apiURL = process.env.NEXT_PUBLIC_API_URL;
-    const authToken = req.body.token;
+    const accessToken = req.body.token;
 
     if(!apiURL) {
       throw new Error('URL da Api não está definida nas variáveis de ambiente');
     }
 
-    if (!authToken) {
+    if (!accessToken) {
       return res.status(401).json({ message: 'Token de autenticação não fornecido' });
+    }
+
+    // Verificar se o token é válido
+    const verifyResponse = await axios.post(`${apiURL}/auth/verify`, {}, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    
+    if (verifyResponse.status !== 200) {
+      return res.status(401).json({ message: 'Token inválido ou expirado' });
     }
 
     const endpointURL = `${apiURL}/demand/getall`;
@@ -23,7 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Fazendo a requisição à API externa com o token de autenticação
     const response = await axios.get(endpointURL, {
       headers: {
-        'Authorization': `Bearer ${authToken}`
+        'Authorization': `Bearer ${accessToken}`
       }
     });
     
