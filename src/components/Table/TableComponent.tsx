@@ -32,6 +32,7 @@ const TableComponent = () => {
           const refreshResponse = await axios.post('/api/auth/renewToken/renewtokenService', {}, {
             withCredentials: true, // Envia o cookie refreshToken automaticamente
           });
+          console.log(refreshResponse.data);
   
           // Verifica se a renovação foi bem-sucedida
           if (refreshResponse.status === 200) {
