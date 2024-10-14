@@ -18,21 +18,45 @@ const TableComponent = () => {
   
   const columns = ['Nome', 'Valor total', 'Criado em'];
 
-  const fetchData = async() => {
-    if( data.length === 0 ) {
+  const fetchData = async () => {
+    if (data.length === 0) {
       try {
         setLoading(true);
+  
         // Buscando o token do localStorage
-        const accessToken = localStorage.getItem('accessToken');
+        let accessToken = localStorage.getItem('accessToken');
+  
+        // Se não encontrar o accessToken, tenta renová-lo usando o refreshToken
         if (!accessToken) {
-          throw new Error('Token de autenticação não encontrado no localStorage');
+          
+          const refreshResponse = await axios.post('/api/auth/renewToken/renewtokenService', {}, {
+            withCredentials: true, // Envia o cookie refreshToken automaticamente
+          });
+  
+          // Verifica se a renovação foi bem-sucedida
+          if (refreshResponse.status === 200) {
+            accessToken = refreshResponse.data.accessToken;
+  
+            // Armazena o novo accessToken no localStorage apenas se não for null
+            if (accessToken) {
+              localStorage.setItem('accessToken', accessToken);
+            } else {
+              throw new Error('Não foi possível renovar o accessToken, pois ele é null.');
+            }
+          } else {
+            throw new Error('Falha ao renovar o accessToken.');
+          }
         }
+  
+        // Faz a requisição à serverless function com o accessToken atualizado
         const response = await axios.post('/api/tableDemand/tableService', {
-          token: accessToken
+          token: accessToken,
         });
-        // setData(response.data);
-        dispatch(setData(response.data)); // Armazena os dados no estado global
-      } catch(e) {
+  
+        // Armazena os dados no estado global
+        dispatch(setData(response.data));
+  
+      } catch (e) {
         console.error('Erro ao buscar dados no componente de tabela: ', e);
       } finally {
         setLoading(false);
@@ -40,7 +64,7 @@ const TableComponent = () => {
     } else {
       setLoading(false);
     }
-  }
+  };
 
   useEffect( () => {
     fetchData();
