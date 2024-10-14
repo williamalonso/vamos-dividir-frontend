@@ -18,15 +18,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(401).json({ message: 'Token de autenticação não fornecido' });
     }
 
-    // Verificar se o token é válido
-    const verifyResponse = await axios.post(`${apiURL}/auth/verify`, {}, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
-    
-    if (verifyResponse.status !== 200) {
-      return res.status(401).json({ message: 'Token inválido ou expirado' });
-    }
-
     const endpointURL = `${apiURL}/demand/getall`;
 
     // Fazendo a requisição à API externa com o token de autenticação
@@ -40,8 +31,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Retorne os dados como resposta da API Next.js
     res.status(200).json(data);
+
   } catch (error) {
+
     console.error('Erro ao buscar dados da API externa:', error);
     res.status(500).json({ message: 'Erro ao buscar dados' });
+    
   }
 }

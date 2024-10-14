@@ -15,8 +15,9 @@ const TableComponent = () => {
   const [sortColumn, setSortColumn] = useState('Nome');
   const data: TableData[] = useSelector((state: RootState) => state.table.data);
   const [loading, setLoading] = useState(true);
-  
   const columns = ['Nome', 'Valor total', 'Criado em'];
+
+  console.log(data)
 
   const fetchData = async () => {
     if (data.length === 0) {
@@ -27,27 +28,27 @@ const TableComponent = () => {
         let accessToken = localStorage.getItem('accessToken');
   
         // Se não encontrar o accessToken, tenta renová-lo usando o refreshToken
-        if (!accessToken) {
+        // if (!accessToken) {
           
-          const refreshResponse = await axios.post('/api/auth/renewToken/renewtokenService', {}, {
-            withCredentials: true, // Envia o cookie refreshToken automaticamente
-          });
-          console.log(refreshResponse.data);
+        //   const refreshResponse = await axios.post('/api/auth/renewToken/renewtokenService', {}, {
+        //     withCredentials: true, // Envia o cookie refreshToken automaticamente
+        //   });
+        //   console.log(refreshResponse.data);
   
-          // Verifica se a renovação foi bem-sucedida
-          if (refreshResponse.status === 200) {
-            accessToken = refreshResponse.data.accessToken;
+        //   // Verifica se a renovação foi bem-sucedida
+        //   if (refreshResponse.status === 200) {
+        //     accessToken = refreshResponse.data.accessToken;
   
-            // Armazena o novo accessToken no localStorage apenas se não for null
-            if (accessToken) {
-              localStorage.setItem('accessToken', accessToken);
-            } else {
-              throw new Error('Não foi possível renovar o accessToken, pois ele é null.');
-            }
-          } else {
-            throw new Error('Falha ao renovar o accessToken.');
-          }
-        }
+        //     // Armazena o novo accessToken no localStorage apenas se não for null
+        //     if (accessToken) {
+        //       localStorage.setItem('accessToken', accessToken);
+        //     } else {
+        //       throw new Error('Não foi possível renovar o accessToken, pois ele é null.');
+        //     }
+        //   } else {
+        //     throw new Error('Falha ao renovar o accessToken.');
+        //   }
+        // }
   
         // Faz a requisição à serverless function com o accessToken atualizado
         const response = await axios.post('/api/tableDemand/tableService', {
@@ -68,8 +69,7 @@ const TableComponent = () => {
   };
 
   useEffect( () => {
-    // fetchData();
-    setLoading(false);
+    fetchData();
   }, [dispatch]);
 
   const onSort = (column: string) => {
@@ -84,8 +84,8 @@ const TableComponent = () => {
   
     switch (sortColumn) {
       case 'Nome':
-        columnA = a.name.toLowerCase();
-        columnB = b.name.toLowerCase();
+        columnA = a.name ? a.name.toLowerCase() : '';
+        columnB = b.name ? b.name.toLowerCase() : '';
         break;
       case 'Valor total':
         columnA = parseFloat(a.valorTotal.replace('R$', '').replace(',', '.'));
