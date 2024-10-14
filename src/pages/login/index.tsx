@@ -38,32 +38,27 @@ const Login = () => {
     }
     
     try {
+
       const response = await axios.post('/api/login', { email, password }, { withCredentials: true });
-      // console.log(response.data);
+      
       const { accessToken  } = response.data;
+
       if (response.status === 200 && accessToken) {
-        // decodifica o token para ver o tempo de expiracao
-        const decodedToken = jwtDecode(accessToken);
-        
-        if (decodedToken.exp) {
-          const expiresIn = decodedToken.exp; // Tempo de expiração em segundos (UNIX timestamp)
 
-          // Converte para milissegundos
-          const tokenExpiryInMilliseconds = expiresIn * 1000; 
+        // Armazena o accessToken no localStorage
+        localStorage.setItem('accessToken', accessToken);
 
-          // Armazena o accessToken e o tempo de expiração no localStorage
-          localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('tokenExpiry', tokenExpiryInMilliseconds.toString());
+        // Redireciona para a página inicial
+        router.push('/home');
 
-          // Redireciona para a página inicial
-          router.push('/home');
-        } else {
-          console.error('A propriedade exp não está definida no token decodificado.');
-        }
-
+      } else {
+        console.error('A propriedade exp não está definida no token decodificado.')
       }
-    } catch (e) {
+
+      } catch (e) {
+
       console.error('Erro ao realizar login: ', e);
+
     }
   };
 
