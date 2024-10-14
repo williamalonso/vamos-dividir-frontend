@@ -68,7 +68,8 @@ const TableComponent = () => {
   };
 
   useEffect( () => {
-    fetchData();
+    // fetchData();
+    setLoading(false);
   }, [dispatch]);
 
   const onSort = (column: string) => {
