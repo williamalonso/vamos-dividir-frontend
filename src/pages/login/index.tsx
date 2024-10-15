@@ -39,7 +39,7 @@ const Login = () => {
     
     try {
 
-      const response = await axios.post('/api/login', { email, password }, { withCredentials: true });
+      const response = await axios.post('/api/auth/login', { email, password }, { withCredentials: true });
       
       const { accessToken  } = response.data;
 

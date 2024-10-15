@@ -27,11 +27,11 @@ const TableComponent = () => {
       try {
         setLoading(true);
   
-        // Buscando o token do localStorage
-        let accessToken = localStorage.getItem('accessToken');
-  
         // checa se o refreshToken existe nos cookies
         checkAuth(router);
+
+        // Buscando o token do localStorage
+        let accessToken = localStorage.getItem('accessToken');
 
         // Se não encontrar o accessToken, tenta renová-lo usando o refreshToken
         // if (!accessToken) {
