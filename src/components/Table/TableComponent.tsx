@@ -7,9 +7,12 @@ import { TableData } from "@/interfaces/TableData";
 import { setData } from "@/redux/slices/tableSlice";
 import TableBody from "@/components/Table/TableBody";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { checkAuth } from "@/services/authService";
 
 const TableComponent = () => {
 
+  const router = useRouter();
   const dispatch = useDispatch();
   const [sortDirection, setSortDirection] = useState('asc');
   const [sortColumn, setSortColumn] = useState('Nome');
@@ -17,7 +20,7 @@ const TableComponent = () => {
   const [loading, setLoading] = useState(true);
   const columns = ['Nome', 'Valor total', 'Criado em'];
 
-  console.log(data)
+  // console.log(data)
 
   const fetchData = async () => {
     if (data.length === 0) {
@@ -27,6 +30,9 @@ const TableComponent = () => {
         // Buscando o token do localStorage
         let accessToken = localStorage.getItem('accessToken');
   
+        // checa se o refreshToken existe nos cookies
+        checkAuth(router);
+
         // Se não encontrar o accessToken, tenta renová-lo usando o refreshToken
         // if (!accessToken) {
           
