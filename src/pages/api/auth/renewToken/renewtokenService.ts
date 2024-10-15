@@ -19,12 +19,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       `${apiURL}/auth/renew`,
       { refreshToken }, // Enviando o refreshToken no corpo da requisição
     );
-    
-    // console.log(response.data);
 
     const newAccessToken = response.data.accessToken;
-
-    // console.log('Novo token gerado:', newAccessToken);
 
     // Retorna o novo accessToken
     res.status(200).json({ accessToken: newAccessToken });

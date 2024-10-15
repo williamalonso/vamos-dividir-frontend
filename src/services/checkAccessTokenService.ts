@@ -16,7 +16,7 @@ export const checkAccessToken = async (): Promise<string | null> => {
   console.warn('accessToken não encontrado. Tentando renovar...');
 
   try {
-    const response = await axios.get('/api/auth/renewToken/renewtokenService', {
+    const response = await axios.post('/api/auth/renewToken/renewtokenService', {
       withCredentials: true, // Inclui cookies na requisição
     });
 
