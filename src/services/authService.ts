@@ -3,8 +3,7 @@ import { NextRouter } from 'next/router';
 
 /**
  * Função para checar se o refreshToken existe nos cookies
- * Verifica se o usuário está autenticado.
- * @param router - O objeto NextRouter para redirecionamento.
+ * @param router - A função recebe um	objeto NextRouter para redirecionamento do usuário
  */
 export const checkAuth = async (router: NextRouter) => {
   try {
