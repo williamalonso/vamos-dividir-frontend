@@ -9,6 +9,7 @@ import TableBody from "@/components/Table/TableBody";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { checkAuth } from "@/services/authService";
+import { checkAccessToken } from "@/services/checkAccessTokenService";
 
 const TableComponent = () => {
 
@@ -28,33 +29,15 @@ const TableComponent = () => {
         setLoading(true);
   
         // checa se o refreshToken existe nos cookies
-        checkAuth(router);
+        await checkAuth(router);
 
-        // Buscando o token do localStorage
-        let accessToken = localStorage.getItem('accessToken');
+        // checa se o accessToken existe. Se nao existir, tenta renova-lo
+        const accessToken = await checkAccessToken();
 
-        // Se não encontrar o accessToken, tenta renová-lo usando o refreshToken
-        // if (!accessToken) {
-          
-        //   const refreshResponse = await axios.post('/api/auth/renewToken/renewtokenService', {}, {
-        //     withCredentials: true, // Envia o cookie refreshToken automaticamente
-        //   });
-        //   console.log(refreshResponse.data);
-  
-        //   // Verifica se a renovação foi bem-sucedida
-        //   if (refreshResponse.status === 200) {
-        //     accessToken = refreshResponse.data.accessToken;
-  
-        //     // Armazena o novo accessToken no localStorage apenas se não for null
-        //     if (accessToken) {
-        //       localStorage.setItem('accessToken', accessToken);
-        //     } else {
-        //       throw new Error('Não foi possível renovar o accessToken, pois ele é null.');
-        //     }
-        //   } else {
-        //     throw new Error('Falha ao renovar o accessToken.');
-        //   }
-        // }
+        // Verifica se o accessToken foi obtido corretamente
+        if (!accessToken) {
+          throw new Error('Não foi possível obter o accessToken.');
+        }
   
         // Faz a requisição à serverless function com o accessToken atualizado
         const response = await axios.post('/api/tableDemand/tableService', {
