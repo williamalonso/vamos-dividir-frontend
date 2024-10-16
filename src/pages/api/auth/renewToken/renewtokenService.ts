@@ -19,9 +19,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       `${apiURL}/auth/renew`,
       {}, // Corpo vazio, pois o refreshToken será enviado no cookie
       {
-        headers: {
-          Cookie: `refreshToken=${refreshToken}`, // Enviando o cookie no cabeçalho
-        },
         withCredentials: true, // Permite enviar cookies junto à requisição
       }
     );
