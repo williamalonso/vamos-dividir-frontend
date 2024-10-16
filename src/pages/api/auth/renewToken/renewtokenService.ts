@@ -7,17 +7,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
-    // Extrai o refreshToken dos cookies
+    // Extrai o refreshToken do cookie
     const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
       return res.status(401).json({ message: 'Refresh token ausente' });
     }
 
-    // Fazendo a requisição para renovar o accessToken usando o refreshToken
+    // Fazendo a requisição para renovar o accessToken usando o cookie httpOnly
     const response = await axios.post(
       `${apiURL}/auth/renew`,
-      { refreshToken }, // Enviando o refreshToken no corpo da requisição
+      {}, // Corpo vazio, pois o refreshToken será enviado no cookie
+      {
+        headers: {
+          Cookie: `refreshToken=${refreshToken}`, // Enviando o cookie no cabeçalho
+        },
+        withCredentials: true, // Permite enviar cookies junto à requisição
+      }
     );
 
     const newAccessToken = response.data.accessToken;
