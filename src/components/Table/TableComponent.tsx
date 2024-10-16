@@ -21,8 +21,6 @@ const TableComponent = () => {
   const [loading, setLoading] = useState(true);
   const columns = ['Nome', 'Valor total', 'Criado em'];
 
-  // console.log(data)
-
   const fetchData = async () => {
     if (data.length === 0) {
       try {

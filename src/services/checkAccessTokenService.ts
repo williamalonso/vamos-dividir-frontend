@@ -23,7 +23,6 @@ export const checkAccessToken = async (): Promise<string | null> => {
     const newAccessToken = response.data.accessToken;
     localStorage.setItem('accessToken', newAccessToken);
 
-    // console.log('Token renovado com sucesso:', newAccessToken);
     return newAccessToken;
   } catch (error) {
     console.error('Erro ao renovar o token:', error);

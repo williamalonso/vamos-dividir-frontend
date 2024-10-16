@@ -37,8 +37,6 @@ const Detail: React.FC<TableData> = () => {
   useEffect( () => {
     fetchData();
   }, [router.query.id]);
-  
-  console.log('teste', item);
 
   return(
     <>
