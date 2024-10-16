@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const setCookie = response.headers['set-cookie'];
       
       if (setCookie) {
-        res.setHeader('Set-Cookie', setCookie); // Armazenar o cookiEncaminha cookies ao cliente
+        res.setHeader('Set-Cookie', setCookie); // Armazenar o cookie
       }
 
       // Retorna a resposta ao frontend
